@@ -46,6 +46,12 @@
         padding: 5px;
         border-radius: 20px;
         cursor: pointer;
+        transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #start:hover {
+    background: #780d0d;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     #score {
@@ -57,8 +63,8 @@
         background-color: white;
         border-radius: 20px;
     }
-
-    #enemycar1 {
+    
+   #enemycar1 {
         /* display: grid; */
         /* place-items: center; */
         position: relative;
@@ -205,13 +211,34 @@
 
 #gameover {
     position: absolute;
-    top: 100px;
+    top: 180px;
     font-size: 100px;
     font: bolder;
     color: red;
     display: none;
 
 }
+
+#restart {
+        position: absolute;
+        /* top: 60vh; */
+        /* left: 47vw; */
+        z-index: 100;
+        font-size: 2rem;
+        background-color: rgb(30, 141, 253);
+        color: white;
+        padding: 5px;
+        border-radius: 20px;
+        cursor: pointer;
+        display: none;
+        size: 100px;
+        transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    #restart:hover {
+    background: #047476;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
 </style>
 
 
@@ -222,6 +249,7 @@
     <div id="score" class="noselect">Score : 0</div>
     <div id="gameover">GAME OVER!</div>
     <button id="start" class="noselect">Start</button>
+    <button id="restart" class="noselect">Continue</button>
 
     <div>
         <div id="enemycar1"><img id="ecarimg1" class="ecarimg noselect" src="./img/car.png" alt=""></div>
@@ -233,7 +261,7 @@
     <div id="mycar"><img id="mycarimg" class="mycarimg  noselect" src="./img/car2.png" alt=""></div>
     <div id="road"></div>
     <audio src="./audios/2020-03-22_-_8_Bit_Surf_-_FesliyanStudios.com_-_David_Renda.mp3"></audio>
-    <audio src="./audios/short-reversed-8bit-one-shot_A_major.wav" id="audio2"></audio>
+    
     
     
 
@@ -244,6 +272,10 @@
 </body>
 
 <script>
+   document.getElementById("restart").addEventListener("click", function () {
+     location.reload()
+   })
+
 var stopped = false
 document.getElementById("start").addEventListener("click", function () {
 
@@ -403,7 +435,6 @@ document.getElementById("start").addEventListener("click", function () {
     document.getElementById("road").style.animation = 'none'
     document.getElementById("score").innerText = "Score:" + maxScore
     pauseaudio()
-   let audio2 = document.getElementById("audio2")
    gameover()
      
   
@@ -416,6 +447,7 @@ document.getElementById("start").addEventListener("click", function () {
 
  function gameover() {
     document.getElementById("gameover").style.display = 'block'
+    document.getElementById("restart").style.display = 'block'
  }
   
 </script>
