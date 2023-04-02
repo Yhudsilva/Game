@@ -19,7 +19,7 @@
         height: 100vh;
         display: grid;
         place-items: center;
-        /* overflow-y: hidden; */
+        overflow-y: hidden; 
 
     } 
 
@@ -32,7 +32,7 @@
         position: relative;
         top: -80vh;
         z-index: -9;
-        /* animation: roadanimation infinite 20s linear; */
+        
     }
 
     #start {
@@ -198,6 +198,10 @@
     width:250px;     
     text-align: center;
 }
+
+.noselect {
+    user-select: none;
+}
 </style>
 
 
@@ -205,17 +209,17 @@
 
     
     
-    <div id="score">Score : 0</div>
-    <button id="start">Start</button>
+    <div id="score" class="noselect">Score : 0</div>
+    <button id="start" class="noselect">Start</button>
 
     <div>
-        <div id="enemycar1"><img id="ecarimg1" class="ecarimg" src="./img/car.png" alt=""></div>
-        <div id="enemycar2"><img id="ecarimg2" class="ecarimg" src="./img/car3.png" alt=""></div>
-        <div id="enemycar3"><img id="ecarimg3" class="ecarimg" src="./img/car.png" alt=""></div>
-        <div id="enemycar4"><img id="ecarimg4" class="ecarimg" src="./img/car3.png" alt=""></div>
+        <div id="enemycar1"><img id="ecarimg1" class="ecarimg noselect" src="./img/car.png" alt=""></div>
+        <div id="enemycar2"><img id="ecarimg2" class="ecarimg  noselect" src="./img/car3.png" alt=""></div>
+        <div id="enemycar3"><img id="ecarimg3" class="ecarimg  noselect" src="./img/car.png" alt=""></div>
+        <div id="enemycar4"><img id="ecarimg4" class="ecarimg  noselect" src="./img/car3.png" alt=""></div>
     </div>
 
-    <div id="mycar"><img id="mycarimg" class="mycarimg" src="./img/car2.png" alt=""></div>
+    <div id="mycar"><img id="mycarimg" class="mycarimg  noselect" src="./img/car2.png" alt=""></div>
     <div id="road"></div>
     <audio src="./audios/2020-03-22_-_8_Bit_Surf_-_FesliyanStudios.com_-_David_Renda.mp3"></audio>
     
@@ -264,7 +268,7 @@ document.getElementById("start").addEventListener("click", function () {
     document.getElementById("enemycar3").style.animation = 'ecar3 5s linear infinite'
     document.getElementById("enemycar4").style.animation = 'ecar4 4s linear infinite'
 
-    let isGameOver = false;
+    
     let t = 15
     let l = 0
 
@@ -272,20 +276,20 @@ document.getElementById("start").addEventListener("click", function () {
 
         if (x.keyCode == 87) {
             t = t - 3
-            // alert("w")
+        
 
         }
         if (x.keyCode == 65) {
             l = l - 1
-            // alert("w")
+            
         }
         if (x.keyCode == 83) {
             t = t + 3
-            // alert("w")
+            
         }
         if (x.keyCode == 68) {
             l = l + 1
-            // alert("w")
+        
         }
         document.getElementById("mycar").style.top = `${t}vh`
         document.getElementById("mycar").style.left = `${l}vw`
