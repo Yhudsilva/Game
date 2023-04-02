@@ -202,6 +202,16 @@
 .noselect {
     user-select: none;
 }
+
+#gameover {
+    position: absolute;
+    top: 100px;
+    font-size: 100px;
+    font: bolder;
+    color: red;
+    display: none;
+
+}
 </style>
 
 
@@ -210,6 +220,7 @@
     
     
     <div id="score" class="noselect">Score : 0</div>
+    <div id="gameover">GAME OVER!</div>
     <button id="start" class="noselect">Start</button>
 
     <div>
@@ -222,6 +233,8 @@
     <div id="mycar"><img id="mycarimg" class="mycarimg  noselect" src="./img/car2.png" alt=""></div>
     <div id="road"></div>
     <audio src="./audios/2020-03-22_-_8_Bit_Surf_-_FesliyanStudios.com_-_David_Renda.mp3"></audio>
+    <audio src="./audios/short-reversed-8bit-one-shot_A_major.wav" id="audio2"></audio>
+    
     
 
 </div>
@@ -231,7 +244,7 @@
 </body>
 
 <script>
-
+var stopped = false
 document.getElementById("start").addEventListener("click", function () {
 
     let audio = document.querySelector('audio')
@@ -294,12 +307,18 @@ document.getElementById("start").addEventListener("click", function () {
         document.getElementById("mycar").style.top = `${t}vh`
         document.getElementById("mycar").style.left = `${l}vw`
     })
-
+    maxScore = 0
     n = 0
     setInterval(() => {
-
+    
+        
+       
         document.getElementById("score").innerText = `Score : ${n}`
-        n = n + 1
+        
+       
+             n = n + 1
+        
+       
 
 
 
@@ -331,33 +350,38 @@ document.getElementById("start").addEventListener("click", function () {
 
 
         if (mycar_left < 450 || mycar_right > 1130 || mycar_top < 20 || mycar_bottom > 690) {
-            setTimeout(() => {})
-            location.reload()
+            
+            setTimeout(stop(), {},2000)
+            
            
 
         }
         if (((ecar1_left < mycar_left && mycar_left < ecar1_right) || (ecar1_left < mycar_right && mycar_right < ecar1_right)) && ((ecar1_top < mycar_top && mycar_top < ecar1_bottom) || (ecar1_top < mycar_bottom && mycar_bottom < ecar1_bottom))) {
-
-            setTimeout(() => {})
-            location.reload()
-           
+            
+            setTimeout(stop(), {},2000)
+            
+             
         }
         if (((ecar2_left < mycar_left && mycar_left < ecar2_right) || (ecar2_left < mycar_right && mycar_right < ecar2_right)) && ((ecar2_top < mycar_top && mycar_top < ecar2_bottom) || (ecar2_top < mycar_bottom && mycar_bottom < ecar2_bottom))) {
-
-            setTimeout(() => {})
-            location.reload()
+            
+            setTimeout(stop(), {},2000)
+      
+           
            
         }
         if (((ecar3_left < mycar_left && mycar_left < ecar3_right) || (ecar3_left < mycar_right && mycar_right < ecar3_right)) && ((ecar3_top < mycar_top && mycar_top < ecar3_bottom) || (ecar3_top < mycar_bottom && mycar_bottom < ecar3_bottom))) {
-
-            setTimeout(() => {})
-            location.reload()
+            
+            setTimeout(stop(), {},2000)
+           
+            
            
 
         }
         if (((ecar4_left < mycar_left && mycar_left < ecar4_right) || (ecar4_left < mycar_right && mycar_right < ecar4_right)) && ((ecar4_top < mycar_top && mycar_top < ecar4_bottom) || (ecar4_top < mycar_bottom && mycar_bottom < ecar4_bottom))) {
-            setTimeout(() => {})
-            location.reload()
+            
+            setTimeout(stop(), {} ,2000)
+            
+            
         }
 
 
@@ -367,6 +391,32 @@ document.getElementById("start").addEventListener("click", function () {
 
 })
 
+ function stop () {
+    maxScore ? null : (maxScore = n);
+    score > maxScore ? (maxScore = n) : null;
+    window.localStorage.setItem("maxScore", maxScore);
+    document.getElementById("enemycar1").style.display = 'none'
+    document.getElementById("enemycar2").style.display = 'none'
+    document.getElementById("enemycar3").style.display = 'none'
+    document.getElementById("enemycar4").style.display = 'none'
+    document.getElementById("mycar").style.display = 'none'
+    document.getElementById("road").style.animation = 'none'
+    document.getElementById("score").innerText = "Score:" + maxScore
+    pauseaudio()
+   let audio2 = document.getElementById("audio2")
+   gameover()
+     
+  
+}
+ function pauseaudio() {
+ 
+ let x = document.querySelector("audio")
+ x.pause()
+ }
+
+ function gameover() {
+    document.getElementById("gameover").style.display = 'block'
+ }
   
 </script>
 </html>
