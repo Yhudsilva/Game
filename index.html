@@ -21,7 +21,8 @@
         place-items: center;
         /* overflow-y: hidden; */
 
-    }
+    } 
+
 
     #road {
         /* border: 2px solid red; */
@@ -184,6 +185,19 @@
             top: -200vh;
         }
     }
+
+    .screen {
+    color:#ffffff;
+    padding: 20px;     
+    position: fixed;     
+    top:50%;     
+    right: 40%;     
+    margin-top: -100px;     
+    margin-left: -100px;     
+    height:200px;     
+    width:250px;     
+    text-align: center;
+}
 </style>
 
 
@@ -203,6 +217,10 @@
 
     <div id="mycar"><img id="mycarimg" class="mycarimg" src="./img/car2.png" alt=""></div>
     <div id="road"></div>
+    <audio src="./audios/2020-03-22_-_8_Bit_Surf_-_FesliyanStudios.com_-_David_Renda.mp3"></audio>
+    
+
+</div>
 
 
    
@@ -212,8 +230,11 @@
 
 document.getElementById("start").addEventListener("click", function () {
 
+    let audio = document.querySelector('audio')
     document.getElementById("start").style.display = 'none'
     document.getElementById("road").style.animation = 'roadanimation 20s linear infinite'
+    audio.play()
+   
 
 
     setInterval(() => {
@@ -243,7 +264,7 @@ document.getElementById("start").addEventListener("click", function () {
     document.getElementById("enemycar3").style.animation = 'ecar3 5s linear infinite'
     document.getElementById("enemycar4").style.animation = 'ecar4 4s linear infinite'
 
-
+    let isGameOver = false;
     let t = 15
     let l = 0
 
@@ -304,44 +325,35 @@ document.getElementById("start").addEventListener("click", function () {
         var mycar_bottom = Math.abs(document.getElementById("mycarimg").getBoundingClientRect().bottom);
 
 
+
         if (mycar_left < 450 || mycar_right > 1130 || mycar_top < 20 || mycar_bottom > 690) {
-            setTimeout(() => {
-                alert(`GAME OVER!`)
-            })
+            setTimeout(() => {})
             location.reload()
+           
 
         }
         if (((ecar1_left < mycar_left && mycar_left < ecar1_right) || (ecar1_left < mycar_right && mycar_right < ecar1_right)) && ((ecar1_top < mycar_top && mycar_top < ecar1_bottom) || (ecar1_top < mycar_bottom && mycar_bottom < ecar1_bottom))) {
 
-            setTimeout(() => {
-                alert(`GAME OVER!`)
-            })
+            setTimeout(() => {})
             location.reload()
-
+           
         }
         if (((ecar2_left < mycar_left && mycar_left < ecar2_right) || (ecar2_left < mycar_right && mycar_right < ecar2_right)) && ((ecar2_top < mycar_top && mycar_top < ecar2_bottom) || (ecar2_top < mycar_bottom && mycar_bottom < ecar2_bottom))) {
 
-            setTimeout(() => {
-                alert(`GAME OVER!`)
-            })
+            setTimeout(() => {})
             location.reload()
-
+           
         }
         if (((ecar3_left < mycar_left && mycar_left < ecar3_right) || (ecar3_left < mycar_right && mycar_right < ecar3_right)) && ((ecar3_top < mycar_top && mycar_top < ecar3_bottom) || (ecar3_top < mycar_bottom && mycar_bottom < ecar3_bottom))) {
 
-            setTimeout(() => {
-                alert(`GAME OVER!`)
-            })
+            setTimeout(() => {})
             location.reload()
+           
 
         }
         if (((ecar4_left < mycar_left && mycar_left < ecar4_right) || (ecar4_left < mycar_right && mycar_right < ecar4_right)) && ((ecar4_top < mycar_top && mycar_top < ecar4_bottom) || (ecar4_top < mycar_bottom && mycar_bottom < ecar4_bottom))) {
-
-            setTimeout(() => {
-                alert(`GAME OVER!`)
-            })
+            setTimeout(() => {})
             location.reload()
-
         }
 
 
@@ -350,5 +362,7 @@ document.getElementById("start").addEventListener("click", function () {
 
 
 })
+
+  
 </script>
 </html>
